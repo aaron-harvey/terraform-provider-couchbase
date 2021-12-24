@@ -2,9 +2,9 @@ TEST?=$$(go list ./... | grep -v 'vendor')
 HOSTNAME=budisky.com
 NAMESPACE=couchbase
 NAME=couchbase
-VERSION=0.0.1
+VERSION=0.0.2
 BINARY="terraform-provider-${NAME}_${VERSION}"
-OS_ARCH=linux_amd64
+OS_ARCH=darwin_amd64
 CGO_ENABLED=0
 
 default: install

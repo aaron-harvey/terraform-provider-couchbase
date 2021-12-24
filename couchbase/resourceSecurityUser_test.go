@@ -19,7 +19,7 @@ resource "couchbase_security_group" "group" {
 	description = "user group"
 }
 resource "couchbase_security_user" "testAccUserConfig_basic" {
-	username = "testAccUser_groups"
+	username = "testAccUser_basic"
 	password = "password"
 	groups = [couchbase_security_group.group.name]
   }
@@ -43,9 +43,9 @@ func TestAccUser(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("couchbase_security_group.group", "name", "testAccUser_group"),
 					resource.TestCheckResourceAttr("couchbase_security_group.group", "description", "user group"),
-					resource.TestCheckResourceAttr("couchbase_security_user.testAccUserConfig_basic", "username", "testAccUser_groups"),
+					resource.TestCheckResourceAttr("couchbase_security_user.testAccUserConfig_basic", "username", "testAccUser_basic"),
 					resource.TestCheckResourceAttr("couchbase_security_user.testAccUserConfig_basic", "password", "password"),
-					resource.TestCheckResourceAttr("couchbase_security_user.testAccUserConfig_basic", "groups", "testAccUser_group"),
+					resource.TestCheckResourceAttr("couchbase_security_user.testAccUserConfig_basic", "groups.0", "testAccUser_group"),
 				),
 			},
 		},
